@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="730" viewBox="0 0 920 730" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a6472"/>
+    </marker>
+    <marker id="arrowDot" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa4b1"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="730" fill="#ffffff"/>
+
+  <!-- Internet -->
+  <rect x="380" y="20" width="160" height="42" rx="21" fill="#ffffff" stroke="#5a6472" stroke-width="1.5"/>
+  <text x="460" y="46" text-anchor="middle" font-size="14" fill="#1b1f23">Internet</text>
+  <line x1="460" y1="62" x2="460" y2="92" stroke="#5a6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- NSG -->
+  <rect x="290" y="94" width="340" height="68" rx="6" fill="#fdf6f6" stroke="#c46a6a" stroke-width="1.5"/>
+  <text x="460" y="118" text-anchor="middle" font-size="13" font-weight="600" fill="#1b1f23">project-nsg</text>
+  <text x="460" y="137" text-anchor="middle" font-size="11.5" fill="#5a6472">allow 22 · 80 · 443 · 5000</text>
+  <text x="460" y="153" text-anchor="middle" font-size="11.5" fill="#c46a6a">deny all else</text>
+  <line x1="460" y1="162" x2="460" y2="196" stroke="#5a6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- VNet container -->
+  <rect x="40" y="198" width="840" height="356" rx="8" fill="#f7f8fa" stroke="#c8cdd4" stroke-width="1.5"/>
+  <text x="60" y="222" font-size="12.5" font-weight="600" fill="#5a6472">project-vnet</text>
+  <text x="143" y="222" font-size="12" fill="#9aa4b1">10.0.0.0/16</text>
+
+  <!-- subnet-web -->
+  <rect x="70" y="240" width="360" height="190" rx="6" fill="#ffffff" stroke="#b9c2cc" stroke-width="1.3"/>
+  <text x="88" y="262" font-size="12" font-weight="600" fill="#5a6472">subnet-web</text>
+  <text x="166" y="262" font-size="11.5" fill="#9aa4b1">10.0.1.0/24</text>
+  <rect x="95" y="278" width="310" height="128" rx="5" fill="#f2f7fb" stroke="#5b8db8" stroke-width="1.4"/>
+  <text x="250" y="302" text-anchor="middle" font-size="13" font-weight="600" fill="#1b1f23">project-vm</text>
+  <text x="250" y="322" text-anchor="middle" font-size="11.5" fill="#5a6472">Ubuntu 24.04 · B2ats v2</text>
+  <text x="250" y="344" text-anchor="middle" font-size="11.5" fill="#5a6472">UFW default deny</text>
+  <text x="250" y="362" text-anchor="middle" font-size="11.5" fill="#5a6472">fail2ban</text>
+  <text x="250" y="380" text-anchor="middle" font-size="11.5" fill="#5a6472">SSH keys only, no root</text>
+  <text x="250" y="398" text-anchor="middle" font-size="11.5" fill="#5a6472">unattended-upgrades</text>
+
+  <!-- subnet-db -->
+  <rect x="490" y="240" width="360" height="190" rx="6" fill="#ffffff" stroke="#b9c2cc" stroke-width="1.3"/>
+  <text x="508" y="262" font-size="12" font-weight="600" fill="#5a6472">subnet-db</text>
+  <text x="578" y="262" font-size="11.5" fill="#9aa4b1">10.0.2.0/24</text>
+  <rect x="515" y="278" width="310" height="72" rx="5" fill="#f2f7fb" stroke="#5b8db8" stroke-width="1.4"/>
+  <text x="670" y="302" text-anchor="middle" font-size="13" font-weight="600" fill="#1b1f23">project-endpoint</text>
+  <text x="670" y="322" text-anchor="middle" font-size="11.5" fill="#5a6472">private endpoint</text>
+  <text x="670" y="340" text-anchor="middle" font-size="11.5" fill="#5a6472">10.0.2.x</text>
+
+  <!-- private link -->
+  <line x1="405" y1="314" x2="515" y2="314" stroke="#5a6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="460" y="306" text-anchor="middle" font-size="10.5" fill="#5a6472">private link</text>
+
+  <!-- private DNS zone -->
+  <rect x="70" y="452" width="780" height="76" rx="6" fill="#ffffff" stroke="#b9c2cc" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="460" y="478" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1b1f23">privatelink.database.windows.net</text>
+  <text x="460" y="497" text-anchor="middle" font-size="11.5" fill="#5a6472">private DNS zone, linked to the virtual network</text>
+  <text x="460" y="515" text-anchor="middle" font-size="11.5" fill="#5a6472">resolves project-db-server.database.windows.net to the private endpoint</text>
+  <line x1="250" y1="406" x2="250" y2="450" stroke="#9aa4b1" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrowDot)"/>
+
+  <!-- Blob storage, reached over its public endpoint -->
+  <line x1="150" y1="554" x2="150" y2="596" stroke="#c48a3a" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+  <text x="158" y="580" font-size="10.5" fill="#c48a3a">public endpoint</text>
+  <rect x="40" y="598" width="300" height="86" rx="6" fill="#ffffff" stroke="#c48a3a" stroke-width="1.5"/>
+  <text x="190" y="624" text-anchor="middle" font-size="13" font-weight="600" fill="#1b1f23">Blob Storage</text>
+  <text x="190" y="644" text-anchor="middle" font-size="11.5" fill="#5a6472">application files and images</text>
+  <text x="190" y="662" text-anchor="middle" font-size="11.5" fill="#5a6472">encrypted at rest, no private endpoint</text>
+
+  <!-- Azure SQL -->
+  <line x1="670" y1="554" x2="670" y2="596" stroke="#5a6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 580 610 a 90 13 0 0 1 180 0 l 0 60 a 90 13 0 0 1 -180 0 z" fill="#ffffff" stroke="#5a6472" stroke-width="1.5"/>
+  <path d="M 580 610 a 90 13 0 0 0 180 0" fill="none" stroke="#5a6472" stroke-width="1.5"/>
+  <text x="670" y="637" text-anchor="middle" font-size="13" font-weight="600" fill="#1b1f23">project-db</text>
+  <text x="670" y="655" text-anchor="middle" font-size="11.5" fill="#5a6472">public access disabled</text>
+  <text x="670" y="671" text-anchor="middle" font-size="11.5" fill="#5a6472">TDE enabled</text>
+
+  <text x="460" y="712" text-anchor="middle" font-size="11" fill="#9aa4b1">Norway East · resource group project-rg</text>
+</svg>
